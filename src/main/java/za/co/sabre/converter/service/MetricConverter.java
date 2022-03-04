@@ -1,7 +1,7 @@
 package za.co.sabre.converter.service;
 
-public interface UnitConverter
+public interface MetricConverter
 {
-	double convertToUnit(double unitValue);
+	double convertToMetric(double unitValue);
 	double convertToImperial(double imperialValue);
 }
