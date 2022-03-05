@@ -13,7 +13,7 @@ public class LengthConverterService implements  MetricConverter
 	 * @return
 	 */
 	@Override
-	public double convertToMetric( double yardValue )
+	public Double convertToMetric( double yardValue )
 	{
 		return Precision.round(yardValue / 1.0936,2  );
 	}
@@ -25,7 +25,7 @@ public class LengthConverterService implements  MetricConverter
 	 */
 
 	@Override
-	public double convertToImperial( double meterValue )
+	public Double convertToImperial( double meterValue )
 	{
 		return Precision.round(meterValue * 1.0936,2  );
 	}
