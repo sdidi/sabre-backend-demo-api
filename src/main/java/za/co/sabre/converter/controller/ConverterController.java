@@ -28,14 +28,12 @@ public class ConverterController
 	}
 
 	@GetMapping("/temperature/imperial/{metricValue}/metric")
-	public Double convertTemperatureImperial(@PathVariable MetricUnit metricUnit,
-			@PathVariable ImperialUnit imperialUnit, @PathVariable Double metricValue){
+	public Double convertTemperatureImperial(@PathVariable Double metricValue){
 		return temperatureConverterService.convertToMetric(metricValue);
 	}
 
 	@GetMapping("/area/metric/{metricValue}/imperial")
-	public Double convertAreaMetric(@PathVariable MetricUnit metricUnit,
-			@PathVariable ImperialUnit imperialUnit, @PathVariable Double metricValue){
+	public Double convertAreaMetric(@PathVariable Double metricValue){
 		return areaConverterService.convertToImperial(metricValue);
 	}
 
@@ -52,6 +50,10 @@ public class ConverterController
 	@GetMapping("/distance/imperial/{metricValue}/metric")
 	public Double convertDistanceImperial(@PathVariable Double metricValue){
 		return distanceConverterService.convertToMetric(metricValue);
+	}
+	@GetMapping("/distance2/metric/{metricValue}/imperial")
+	public Double convertDistance2Metric(@PathVariable Double metricValue){
+		return distanceConverterService.convertToImperial(metricValue);
 	}
 
 	@GetMapping("/weight/metric/{metricValue}/imperial")
