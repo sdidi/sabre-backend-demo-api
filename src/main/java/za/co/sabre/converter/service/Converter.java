@@ -42,7 +42,7 @@ public class Converter implements  IConverter
 					return areaConverterService.convertToImperial( value );
 				case "yard":
 					return lengthConverterService.convertToMetric( value );
-				case "metre":
+				case "meter":
 					return lengthConverterService.convertToImperial( value );
 				case "pound":
 					return massConverterService.convertToMetric( value );
