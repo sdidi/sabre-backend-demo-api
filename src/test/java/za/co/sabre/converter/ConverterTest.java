@@ -129,7 +129,53 @@ public class ConverterTest
 		assertEquals(expectedMeterValue,convertToMeterEntity.getBody());
 	}
 
+	@Test
+	public void givenKilogramsValueCheckIfItConvertsToCorrectPoundValue(){
+		double kilogramValue = 10.0;
+		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
+		ResponseEntity<Double> convertToPoundEntity = testRestTemplate.exchange(createURLWithPort("/kilogram/pound/" + kilogramValue),
+				HttpMethod.GET,
+				entity,
+				Double.class);
+		Double expectedPoundValue = 4.54;
+		assertEquals(expectedPoundValue,convertToPoundEntity.getBody());
+	}
 
+	@Test
+	public void givenPoundValueCheckIfItConvertsToCorrectKilogramsValue(){
+		double poundValue = 10.0;
+		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
+		ResponseEntity<Double> convertToKilogramEntity = testRestTemplate.exchange(createURLWithPort("/pound/kilogram/" + poundValue),
+				HttpMethod.GET,
+				entity,
+				Double.class);
+		Double expectedKilogramValue = 22.05;
+		assertEquals(expectedKilogramValue,convertToKilogramEntity.getBody());
+	}
+
+	@Test
+	public void givenLitreValueCheckIfItConvertsToCorrectPintValue(){
+		double litreValue = 10.0;
+		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
+		ResponseEntity<Double> convertToPintEntity = testRestTemplate.exchange(createURLWithPort("/litre/pint/" + litreValue),
+				HttpMethod.GET,
+				entity,
+				Double.class);
+		Double expectedPintValue = 5.68;
+		assertEquals(expectedPintValue,convertToPintEntity.getBody());
+	}
+
+	@Test
+	public void givenPintValueCheckIfItConvertsToCorrectLitreValue(){
+		double pintValue = 10.0;
+		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
+		ResponseEntity<Double> convertToLitreEntity = testRestTemplate.exchange(createURLWithPort("/pint/litre/" + pintValue),
+				HttpMethod.GET,
+				entity,
+				Double.class);
+		Double expectedLitreValue = 17.6;
+		assertEquals(expectedLitreValue,convertToLitreEntity.getBody());
+	}
 
 	private String createURLWithPort(String uri){
 		return "http://localhost:" + port + "/converter-api" + uri ;

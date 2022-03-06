@@ -46,7 +46,7 @@ public class Converter implements  IConverter
 					return lengthConverterService.convertToImperial( value );
 				case "pound":
 					return massConverterService.convertToMetric( value );
-				case "kilograms":
+				case "kilogram":
 					return massConverterService.convertToImperial( value );
 				case "fahrenheit":
 					return temperatureConverterService.convertToMetric( value );
