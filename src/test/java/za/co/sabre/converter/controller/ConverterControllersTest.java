@@ -1,4 +1,4 @@
-package za.co.sabre.converter;
+package za.co.sabre.converter.controller;
 
 
 import org.junit.jupiter.api.Test;
@@ -7,11 +7,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
+import za.co.sabre.converter.ConverterDemoApplication;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = ConverterDemoApplication.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ConverterTest
+public class ConverterControllersTest
 {
 	private final HttpHeaders httpHeaders = new HttpHeaders();
 
@@ -30,6 +31,8 @@ public class ConverterTest
 				entity,
 				Double.class);
 		Double expectedAcreValue = 1.21;
+		assertNotNull(convertToAcreEntity);
+		assertNotNull(convertToAcreEntity.getBody());
 		assertEquals(expectedAcreValue,convertToAcreEntity.getBody());
 	}
 
