@@ -4,7 +4,7 @@ import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MassConverterService implements MetricConverter
+public class WeightConverterService implements ConverterService
 {
 	@Override
 	public Double convertToMetric( double poundValue )

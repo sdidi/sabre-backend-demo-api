@@ -1,6 +1,6 @@
 package za.co.sabre.converter.service;
 
-public enum Imperial
+public enum ImperialUnit
 {
 	POUND("pound"),
 	FAHREINHEIT("fahrenheit"),
@@ -10,7 +10,7 @@ public enum Imperial
 
 	public final String label;
 
-	Imperial( String label ) {
+	ImperialUnit( String label ) {
 		this.label = label;
 	}
 }

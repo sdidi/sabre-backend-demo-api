@@ -1,6 +1,6 @@
 package za.co.sabre.converter.service;
 
-public enum Metric
+public enum MetricUnit
 {
 	KILOGRAM("kilogram"),
 	LITRE("litre"),
@@ -10,7 +10,7 @@ public enum Metric
 
 	public final String label;
 
-	private Metric(String label) {
+	private MetricUnit(String label) {
 		this.label = label;
 	}
 }

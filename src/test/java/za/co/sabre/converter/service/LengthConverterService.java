@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LengthConverterService
 {
 	@InjectMocks
-	private LengthConverterService lengthConverterService;
+	private DistanceConverterService lengthConverterService;
 
 	@BeforeAll
 	public static void init() {

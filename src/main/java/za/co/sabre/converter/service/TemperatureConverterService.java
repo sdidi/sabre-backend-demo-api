@@ -4,7 +4,7 @@ import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TemperatureConverterService implements MetricConverter {
+public class TemperatureConverterService implements ConverterService {
 
 	@Override
 	public Double convertToMetric( double fahrenheitValue )
