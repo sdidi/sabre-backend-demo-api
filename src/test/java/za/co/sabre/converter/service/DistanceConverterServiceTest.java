@@ -8,10 +8,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith( MockitoExtension.class)
-public class LengthConverterService
+public class DistanceConverterServiceTest
 {
 	@InjectMocks
-	private DistanceConverterService lengthConverterService;
+	private DistanceConverterService distanceConverterService;
 
 	@BeforeAll
 	public static void init() {
@@ -20,12 +20,12 @@ public class LengthConverterService
 
 	@Test
 	public void givenHectareValueConversionToAcreReturnsCorrectValue(){
-		assertEquals(9.14, lengthConverterService.convertToImperial( 10.0 ));
+		assertEquals(10.94, distanceConverterService.convertToImperial( 10.0 ));
 	}
 
 	@Test
 	public void givenAcreValueConversionToHectareReturnsCorrectValue(){
-		assertEquals(10.0, lengthConverterService.convertToMetric( 9.14 ));
+		assertEquals(8.36, distanceConverterService.convertToMetric( 9.14 ));
 	}
 
 }

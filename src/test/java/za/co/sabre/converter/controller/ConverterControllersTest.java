@@ -1,6 +1,7 @@
 package za.co.sabre.converter.controller;
 
 
+import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = ConverterDemoApplication.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ConverterControllersTest
 {
+	private final static Logger log = Logger.getLogger( ConverterController.class.getName() );
 	private final HttpHeaders httpHeaders = new HttpHeaders();
 
 	@Autowired
@@ -112,23 +114,23 @@ public class ConverterControllersTest
 	public void givenMeterValueCheckIfItConvertsToCorrectYardValue(){
 		double meterValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToYardEntity = testRestTemplate.exchange(createURLWithPort("/distance2/meter/" + meterValue+"/imperial"),
+		ResponseEntity<Double> convertToYardEntity = testRestTemplate.exchange(createURLWithPort("/distance/metric/" + meterValue+"/imperial"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
-		Double expectedYardValue = 9.14;
+		Double expectedYardValue = 10.94;
 		assertEquals(expectedYardValue,convertToYardEntity.getBody());
 	}
 
 	@Test
 	public void givenYardValueCheckIfItConvertsToCorrectMeterValue(){
-		Double yardValue = 10.0;
+		double yardValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToMeterEntity = testRestTemplate.exchange(createURLWithPort("/distance/metric/" + yardValue+"/metric"),
+		ResponseEntity<Double> convertToMeterEntity = testRestTemplate.exchange(createURLWithPort("/distance/imperial/" + yardValue+"/metric"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
-		Double expectedMeterValue = 10.94;
+		Double expectedMeterValue = 9.14;
 		assertEquals(expectedMeterValue,convertToMeterEntity.getBody());
 	}
 
