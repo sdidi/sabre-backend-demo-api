@@ -2,6 +2,7 @@ package za.co.sabre.converter.controller;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import za.co.sabre.converter.enums.MetricUnit;
 import za.co.sabre.converter.service.*;
 
 @RestController
@@ -9,20 +10,11 @@ import za.co.sabre.converter.service.*;
 public class ConverterController
 {
 	private final static Logger log = Logger.getLogger( ConverterController.class.getName() );
-	@Autowired
-	AreaConverterService areaConverterService;
-	@Autowired
-	DistanceConverterService distanceConverterService;
-	@Autowired
-	WeightConverterService weightConverterService;
-	@Autowired
-	TemperatureConverterService temperatureConverterService;
-	@Autowired
-	VolumeConverterService volumeConverterService;
-	/*@Autowired
-	ConverterService converterService;*/
 
-	@GetMapping("/temperature/metric/{metricValue}/imperial")
+	@Autowired
+	ConversionService conversionService;
+
+/*	@GetMapping("/temperature/metric/{metricValue}/imperial")
 	public Double convertTemperatureMetric(@PathVariable Double metricValue){
 		return temperatureConverterService.convertToImperial(metricValue);
 	}
@@ -30,9 +22,14 @@ public class ConverterController
 	@GetMapping("/temperature/imperial/{metricValue}/metric")
 	public Double convertTemperatureImperial(@PathVariable Double metricValue){
 		return temperatureConverterService.convertToMetric(metricValue);
+	}*/
+
+	@GetMapping("/temperature/{fromUnit}/{unitValue}/{toUnit}")
+	public Double convertTemperature(@PathVariable Double unitValue, @PathVariable MetricUnit fromUnit, MetricUnit toUnit){
+		return conversionService.convert( fromUnit,toUnit,unitValue );
 	}
 
-	@GetMapping("/area/metric/{metricValue}/imperial")
+	/*@GetMapping("/area/metric/{metricValue}/imperial")
 	public Double convertAreaMetric(@PathVariable Double metricValue){
 		return areaConverterService.convertToImperial(metricValue);
 	}
@@ -40,9 +37,14 @@ public class ConverterController
 	@GetMapping("/area/imperial/{metricValue}/metric")
 	public Double convertAreaImperial(@PathVariable Double metricValue){
 		return areaConverterService.convertToMetric( metricValue );
+	}*/
+
+	@GetMapping("/area/{fromUnit}/{unitValue}/{toUnit}")
+	public Double convertArea(@PathVariable Double unitValue, @PathVariable MetricUnit fromUnit, MetricUnit toUnit){
+		return conversionService.convert( fromUnit,toUnit,unitValue );
 	}
 
-	@GetMapping("/distance/metric/{metricValue}/imperial")
+/*	@GetMapping("/distance/metric/{metricValue}/imperial")
 	public Double convertDistanceMetric(@PathVariable Double metricValue){
 		return distanceConverterService.convertToImperial(metricValue);
 	}
@@ -50,8 +52,15 @@ public class ConverterController
 	@GetMapping("/distance/imperial/{metricValue}/metric")
 	public Double convertDistanceImperial(@PathVariable Double metricValue){
 		return distanceConverterService.convertToMetric(metricValue);
+	}*/
+
+	@GetMapping("/distance/{fromUnit}/{unitValue}/{toUnit}")
+	public Double convertDistancel(@PathVariable Double unitValue, @PathVariable MetricUnit fromUnit, MetricUnit toUnit){
+		return conversionService.convert( fromUnit,toUnit,unitValue );
 	}
-	@GetMapping("/distance2/metric/{metricValue}/imperial")
+
+
+	/*@GetMapping("/distance2/metric/{metricValue}/imperial")
 	public Double convertDistance2Metric(@PathVariable Double metricValue){
 		return distanceConverterService.convertToImperial(metricValue);
 	}
@@ -59,9 +68,14 @@ public class ConverterController
 	@GetMapping("/weight/metric/{metricValue}/imperial")
 	public Double convertWeightMetric(@PathVariable Double metricValue){
 		return weightConverterService.convertToImperial(metricValue);
+	}*/
+
+	@GetMapping("/weight/{fromUnit}/{unitValue}/{toUnit}")
+	public Double convertWeightMetric(@PathVariable Double unitValue, @PathVariable MetricUnit fromUnit, MetricUnit toUnit){
+		return conversionService.convert( fromUnit,toUnit,unitValue );
 	}
 
-	@GetMapping("/weight/imperial/{metricValue}/metric")
+/*	@GetMapping("/weight/imperial/{metricValue}/metric")
 	public Double convertWeightImperial(@PathVariable Double metricValue){
 		return weightConverterService.convertToMetric(metricValue);
 	}
@@ -74,13 +88,12 @@ public class ConverterController
 	@GetMapping("/volume/imperial/{metricValue}/metric")
 	public Double convertVolumeImperial(@PathVariable Double metricValue){
 		return volumeConverterService.convertToMetric(metricValue);
+	}*/
+
+	@GetMapping("/volume/{fromUnit}/{unitValue}/{toUnit}")
+	public Double convertVolume(@PathVariable Double unitValue, @PathVariable MetricUnit fromUnit, MetricUnit toUnit){
+		return conversionService.convert( fromUnit,toUnit,unitValue );
 	}
 
-		/*@GetMapping("/temperature/imperial/{metricValue}/metric")
-	public Double convertTemperatureImperial(@PathVariable MetricUnit metricUnit,
-			@PathVariable ImperialUnit imperialUnit, @PathVariable Double metricValue){
-		return converter.convert(metricValue, metricUnit, imperialUnit);
-	}
-*/
 
 }

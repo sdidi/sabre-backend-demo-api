@@ -1,4 +1,4 @@
-package za.co.sabre.converter.service;
+package za.co.sabre.converter.enums;
 
 public enum MetricUnit
 {
@@ -6,7 +6,12 @@ public enum MetricUnit
 	LITRE("litre"),
 	METER("meter"),
 	CELSIUS("celsius"),
-	HECTARE("hectare");
+	HECTARE("hectare"),
+	POUND("pound"),
+	FAHREINHEIT("fahrenheit"),
+	YARD("yard"),
+	ACRES("acre"),
+	PINT("pint");
 
 	public final String label;
 
