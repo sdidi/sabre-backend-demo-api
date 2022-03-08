@@ -28,7 +28,7 @@ public class ConverterControllersTest
 	public void givenHectareValueCheckIfItConvertsToCorrectAcreValue(){
 		double hectareValue = 3.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToAcreEntity = testRestTemplate.exchange(createURLWithPort("/area/metric/" + hectareValue+"/imperial"),
+		ResponseEntity<Double> convertToAcreEntity = testRestTemplate.exchange(createURLWithPort("/area/hectare/" + hectareValue+"/acre"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -42,7 +42,7 @@ public class ConverterControllersTest
 	public void givenHectareValueAndIncorrectAcreCheckIfItReturnsFalse(){
 		double hectareValue = 3.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToAcreEntity = testRestTemplate.exchange(createURLWithPort("/area/metric/" + hectareValue+"/imperial"),
+		ResponseEntity<Double> convertToAcreEntity = testRestTemplate.exchange(createURLWithPort("/area/hectare/" + hectareValue+"/acre"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -54,7 +54,7 @@ public class ConverterControllersTest
 	public void givenAcreValueCheckIfItConvertsToCorrectHectareValue(){
 		double acreValue = 3.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToHectareEntity = testRestTemplate.exchange(createURLWithPort("/area/imperial/" + acreValue+"/metric"),
+		ResponseEntity<Double> convertToHectareEntity = testRestTemplate.exchange(createURLWithPort("/area/acre/" + acreValue+"/hectare"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -66,7 +66,7 @@ public class ConverterControllersTest
 	public void givenAcreValueAndIncorrectHectareCheckIfItReturnsFalse(){
 		double acreValue = 3.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToHectareEntity = testRestTemplate.exchange(createURLWithPort("/area/imperial/" + acreValue+"/metric"),
+		ResponseEntity<Double> convertToHectareEntity = testRestTemplate.exchange(createURLWithPort("/area/acre/" + acreValue+"/hectare"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -78,7 +78,7 @@ public class ConverterControllersTest
 	public void givenCelsiusValueCheckIfItConvertsToCorrectFahrenheitValue(){
 		double celsiusValue = 42;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToFahrenheitEntity = testRestTemplate.exchange(createURLWithPort("/temperature/metric/" + celsiusValue+"/imperial"),
+		ResponseEntity<Double> convertToFahrenheitEntity = testRestTemplate.exchange(createURLWithPort("/temperature/celsius/" + celsiusValue+"/fahreinheit"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -90,7 +90,7 @@ public class ConverterControllersTest
 	public void givenCelsiusValueAndIncorrectFahrenheitValue_CheckIfItReturnsFalse(){
 		double celsiusValue = 42;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToFahrenheitEntity = testRestTemplate.exchange(createURLWithPort("/temperature/metric/" + celsiusValue+"/imperial"),
+		ResponseEntity<Double> convertToFahrenheitEntity = testRestTemplate.exchange(createURLWithPort("/temperature/celsius/" + celsiusValue+"/fahreinheit"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -102,7 +102,7 @@ public class ConverterControllersTest
 	public void givenFahrenheitValueCheckIfItConvertsToCorrectCelsiusValue(){
 		double fahrenheitValue = 5.56;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToCelsiusEntity = testRestTemplate.exchange(createURLWithPort("/temperature/imperial/" + fahrenheitValue+"/metric"),
+		ResponseEntity<Double> convertToCelsiusEntity = testRestTemplate.exchange(createURLWithPort("/temperature/fahreinheit/" + fahrenheitValue+"/fahreinheit"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -114,7 +114,7 @@ public class ConverterControllersTest
 	public void givenMeterValueCheckIfItConvertsToCorrectYardValue(){
 		double meterValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToYardEntity = testRestTemplate.exchange(createURLWithPort("/distance/metric/" + meterValue+"/imperial"),
+		ResponseEntity<Double> convertToYardEntity = testRestTemplate.exchange(createURLWithPort("/distance/meter/" + meterValue+"/yard"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -126,7 +126,7 @@ public class ConverterControllersTest
 	public void givenYardValueCheckIfItConvertsToCorrectMeterValue(){
 		double yardValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToMeterEntity = testRestTemplate.exchange(createURLWithPort("/distance/imperial/" + yardValue+"/metric"),
+		ResponseEntity<Double> convertToMeterEntity = testRestTemplate.exchange(createURLWithPort("/distance/yard/" + yardValue+"/meter"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -138,7 +138,7 @@ public class ConverterControllersTest
 	public void givenKilogramsValueCheckIfItConvertsToCorrectPoundValue(){
 		double kilogramValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToPoundEntity = testRestTemplate.exchange(createURLWithPort("/weight/metric/" + kilogramValue+"/imperial"),
+		ResponseEntity<Double> convertToPoundEntity = testRestTemplate.exchange(createURLWithPort("/weight/kilogram/" + kilogramValue+"/pound"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -150,7 +150,7 @@ public class ConverterControllersTest
 	public void givenPoundValueCheckIfItConvertsToCorrectKilogramsValue(){
 		double poundValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToKilogramEntity = testRestTemplate.exchange(createURLWithPort("/weight/imperial/" + poundValue+"/metric"),
+		ResponseEntity<Double> convertToKilogramEntity = testRestTemplate.exchange(createURLWithPort("/weight/pound/" + poundValue+"/kilogram"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -162,7 +162,7 @@ public class ConverterControllersTest
 	public void givenLitreValueCheckIfItConvertsToCorrectPintValue(){
 		double litreValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToPintEntity = testRestTemplate.exchange(createURLWithPort("/volume/metric/" + litreValue+"/imperial"),
+		ResponseEntity<Double> convertToPintEntity = testRestTemplate.exchange(createURLWithPort("/volume/litre/" + litreValue+"/pint"),
 				HttpMethod.GET,
 				entity,
 				Double.class);
@@ -174,7 +174,7 @@ public class ConverterControllersTest
 	public void givenPintValueCheckIfItConvertsToCorrectLitreValue(){
 		double pintValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToLitreEntity = testRestTemplate.exchange(createURLWithPort("/volume/imperial/" + pintValue+"/metric"),
+		ResponseEntity<Double> convertToLitreEntity = testRestTemplate.exchange(createURLWithPort("/volume/pint/" + pintValue+"/litre"),
 				HttpMethod.GET,
 				entity,
 				Double.class);

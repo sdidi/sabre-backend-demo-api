@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import za.co.sabre.converter.enums.MetricUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,21 +12,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DistanceConverterServiceTest
 {
 	@InjectMocks
-	private DistanceConverterService distanceConverterService;
+	private GeneralConverterService generalConverterService;
 
 	@BeforeAll
 	public static void init() {
-		MockitoAnnotations.openMocks(AreaConverterService.class);
+		MockitoAnnotations.openMocks(GeneralConverterService.class);
 	}
 
 	@Test
-	public void givenHectareValueConversionToAcreReturnsCorrectValue(){
-		assertEquals(10.94, distanceConverterService.convertToImperial( 10.0 ));
+	public void givenMeterValueConversionToYardReturnsCorrectValue(){
+		assertEquals(10.94, generalConverterService.convert( 10.0, MetricUnit.METER, MetricUnit.YARD ));
 	}
 
 	@Test
-	public void givenAcreValueConversionToHectareReturnsCorrectValue(){
-		assertEquals(8.36, distanceConverterService.convertToMetric( 9.14 ));
+	public void givenYardValueConversionToMeterReturnsCorrectValue(){
+		assertEquals(8.36, generalConverterService.convert( 9.14, MetricUnit.YARD, MetricUnit.METER ));
 	}
 
 }

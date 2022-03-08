@@ -4,14 +4,13 @@ import org.apache.commons.math3.util.Precision;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TemperatureConverterService implements ConverterService {
-
+public class TemperatureConverterService implements ITemperatureConverterService
+{
 	@Override
 	public Double convertToMetric( double fahrenheitValue )
 	{
 		return Precision.round((fahrenheitValue -32 )* 5 / 9,2  );
 	}
-
 	@Override
 	public Double convertToImperial( double celsiusValue )
 	{

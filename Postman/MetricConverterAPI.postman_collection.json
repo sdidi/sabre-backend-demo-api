@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "8d48feae-f2f0-46c1-84ba-92fa179c23e8",
+		"name": "MetricConverterAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GETDemo",
+			"item": [
+				{
+					"name": "TemperatureMetricToImperial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/temperature/celsius/10/FAHREINHEIT",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"temperature",
+								"celsius",
+								"10",
+								"FAHREINHEIT"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DistanceMetricToImperial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/distance/meter/10/yard",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"distance",
+								"meter",
+								"10",
+								"yard"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "WeightMetricToImperial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/weight/kilogram/10/pound",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"weight",
+								"kilogram",
+								"10",
+								"pound"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AreaMetricToImperial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/area/hectare/10/acre",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"area",
+								"hectare",
+								"10",
+								"acre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VolumeMetricToImperial",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/volume/litre/10/pint",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"volume",
+								"litre",
+								"10",
+								"pint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TemperatureImperialToMetric",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/temperature/fahreinheit/10/celsius",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"temperature",
+								"fahreinheit",
+								"10",
+								"celsius"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DistanceImperialToMetric",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/distance/yard/10/meter",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"distance",
+								"yard",
+								"10",
+								"meter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "WeightImperialToMetric",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/weight/pound/10/kilogram",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"weight",
+								"pound",
+								"10",
+								"kilogram"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AreaImperialToMetric",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/{{api}}/area/acre/10/hectare",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"{{api}}",
+								"area",
+								"acre",
+								"10",
+								"hectare"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VolumeImperialToMetric",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

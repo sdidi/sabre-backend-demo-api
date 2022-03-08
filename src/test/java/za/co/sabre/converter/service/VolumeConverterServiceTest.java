@@ -1,6 +1,5 @@
 package za.co.sabre.converter.service;
 
-
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
@@ -10,7 +9,7 @@ import za.co.sabre.converter.enums.MetricUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith( MockitoExtension.class)
-public class AreaConverterServiceTest
+public class VolumeConverterServiceTest
 {
 	@InjectMocks
 	private GeneralConverterService generalConverterService;
@@ -21,13 +20,12 @@ public class AreaConverterServiceTest
 	}
 
 	@Test
-	public void givenHectareValueConversionToAcreReturnsCorrectValue(){
-		assertEquals(7.41, generalConverterService.convert( 3.0, MetricUnit.HECTARE,MetricUnit.ACRE ));
+	public void givenLitreValueConversionToPintReturnsCorrectValue(){
+		assertEquals(5.28, generalConverterService.convert( 3.0, MetricUnit.LITRE,MetricUnit.PINT ));
 	}
 
 	@Test
-	public void givenAcreValueConversionToHectareReturnsCorrectValue(){
-		assertEquals(1.21, generalConverterService.convert( 3.0 ,MetricUnit.ACRE,MetricUnit.HECTARE));
+	public void givenPintValueConversionToLitreReturnsCorrectValue(){
+		assertEquals(1.7, generalConverterService.convert( 3.0 ,MetricUnit.PINT,MetricUnit.LITRE));
 	}
-
 }

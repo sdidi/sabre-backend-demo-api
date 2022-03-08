@@ -13,5 +13,7 @@ Project Assignment Specification:
     5. Upload your project into your own GIT repository and share the project with us.
 
     6. The project must be able to run in its own Docker environment
+    To run docker: docker run -p 9090:8080 sabre-converter-demo-api.jar
+
 
     7. Build system must use Maven.
