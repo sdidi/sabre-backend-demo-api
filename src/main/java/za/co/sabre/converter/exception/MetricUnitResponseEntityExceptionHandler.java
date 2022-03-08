@@ -14,7 +14,7 @@ public class MetricUnitResponseEntityExceptionHandler
 			= { IllegalArgumentException.class, IllegalStateException.class })
 	protected ResponseEntity<Object> handleConflict(
 			RuntimeException ex, WebRequest request) {
-		String bodyOfResponse = "Invalid Enums on the parameters";
+		String bodyOfResponse = "Invalid Enums on the parameters - check ";
 		return handleExceptionInternal(ex, bodyOfResponse,
 				new HttpHeaders(), HttpStatus.CONFLICT, request);
 	}
