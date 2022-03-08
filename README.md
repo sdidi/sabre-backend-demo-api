@@ -39,7 +39,7 @@ The Spring Boot application has a controller to expose the rest endpoints for di
 
 The application makes use of enums to handle different measurements and units conversion factors. The enums are used both in the controller and in the service layer.
 
-The endpoint take this structure:  http://localhost:8080/converter-api/<measurement>/<unit-to-convert-from>/<unit-value>/<unit-to-onvert-to>
+The endpoint take this structure:  http://localhost:8080/converter-api/<measurement>/{unit-to-convert-from}/{unit-value}/{unit-to-onvert-to}
 
 For example,
 http://localhost:8080/converter-api/temperature/celsius/10/fahreinheit
