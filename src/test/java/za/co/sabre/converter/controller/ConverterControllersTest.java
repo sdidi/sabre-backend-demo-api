@@ -1,6 +1,7 @@
 package za.co.sabre.converter.controller;
 
 
+import java.util.Map;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
 import za.co.sabre.converter.ConverterDemoApplication;
+import za.co.sabre.converter.enums.MetricUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,158 +30,159 @@ public class ConverterControllersTest
 	public void givenHectareValueCheckIfItConvertsToCorrectAcreValue(){
 		double hectareValue = 3.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToAcreEntity = testRestTemplate.exchange(createURLWithPort("/area/hectare/" + hectareValue+"/acre"),
+		ResponseEntity<Map> convertToAcreEntity;
+		convertToAcreEntity = testRestTemplate.exchange(createURLWithPort("/area/hectare/" + hectareValue+"/acre"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double expectedAcreValue = 7.41;
 		assertNotNull(convertToAcreEntity);
-		assertNotNull(convertToAcreEntity.getBody());
-		assertEquals(expectedAcreValue,convertToAcreEntity.getBody());
+		assertNotNull(convertToAcreEntity.getBody().containsKey( MetricUnit.ACRE ));
+		assertEquals(expectedAcreValue,convertToAcreEntity.getBody().get( "acre" ));
 	}
 
 	@Test
 	public void givenHectareValueAndIncorrectAcreCheckIfItReturnsFalse(){
 		double hectareValue = 3.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToAcreEntity = testRestTemplate.exchange(createURLWithPort("/area/hectare/" + hectareValue+"/acre"),
+		ResponseEntity<Map> convertToAcreEntity = testRestTemplate.exchange(createURLWithPort("/area/hectare/" + hectareValue+"/acre"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double incorrectAcreValue = 1.22;
-		assertNotEquals(incorrectAcreValue,convertToAcreEntity.getBody());
+		assertNotEquals(incorrectAcreValue,convertToAcreEntity.getBody().get( "acre" ));
 	}
 
 	@Test
 	public void givenAcreValueCheckIfItConvertsToCorrectHectareValue(){
 		double acreValue = 3.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToHectareEntity = testRestTemplate.exchange(createURLWithPort("/area/acre/" + acreValue+"/hectare"),
+		ResponseEntity<Map>  convertToHectareEntity = testRestTemplate.exchange(createURLWithPort("/area/acre/" + acreValue+"/hectare"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double expectedHectareValue = 1.21;
-		assertEquals(expectedHectareValue,convertToHectareEntity.getBody());
+		assertEquals(expectedHectareValue,convertToHectareEntity.getBody().get( "hectare" ));
 	}
 
 	@Test
 	public void givenAcreValueAndIncorrectHectareCheckIfItReturnsFalse(){
 		double acreValue = 3.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToHectareEntity = testRestTemplate.exchange(createURLWithPort("/area/acre/" + acreValue+"/hectare"),
+		ResponseEntity<Map>  convertToHectareEntity = testRestTemplate.exchange(createURLWithPort("/area/acre/" + acreValue+"/hectare"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double incorrectHectareValue = 7.0;
-		assertNotEquals(incorrectHectareValue,convertToHectareEntity.getBody());
+		assertNotEquals(incorrectHectareValue,convertToHectareEntity.getBody().get( "hectare" ));
 	}
 
 	@Test
 	public void givenCelsiusValueCheckIfItConvertsToCorrectFahrenheitValue(){
 		double celsiusValue = 42;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToFahrenheitEntity = testRestTemplate.exchange(createURLWithPort("/temperature/celsius/" + celsiusValue+"/fahreinheit"),
+		ResponseEntity<Map>  convertToFahrenheitEntity = testRestTemplate.exchange(createURLWithPort("/temperature/celsius/" + celsiusValue+"/fahreinheit"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double expectedFahrenheitValue = 107.6;
-		assertEquals(expectedFahrenheitValue,convertToFahrenheitEntity.getBody());
+		assertEquals(expectedFahrenheitValue,convertToFahrenheitEntity.getBody().get( "fahreinheit" ));
 	}
 
 	@Test
 	public void givenCelsiusValueAndIncorrectFahrenheitValue_CheckIfItReturnsFalse(){
 		double celsiusValue = 42;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToFahrenheitEntity = testRestTemplate.exchange(createURLWithPort("/temperature/celsius/" + celsiusValue+"/fahreinheit"),
+		ResponseEntity<Map>  convertToFahrenheitEntity = testRestTemplate.exchange(createURLWithPort("/temperature/celsius/" + celsiusValue+"/fahreinheit"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double incorrectFahrenheitValue = 5.0;
-		assertNotEquals(incorrectFahrenheitValue,convertToFahrenheitEntity.getBody());
+		assertNotEquals(incorrectFahrenheitValue,convertToFahrenheitEntity.getBody().get("fahreinheit"));
 	}
 
 	@Test
 	public void givenFahrenheitValueCheckIfItConvertsToCorrectCelsiusValue(){
 		double fahrenheitValue = 5.56;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToCelsiusEntity = testRestTemplate.exchange(createURLWithPort("/temperature/fahreinheit/" + fahrenheitValue+"/fahreinheit"),
+		ResponseEntity<Map>  convertToCelsiusEntity = testRestTemplate.exchange(createURLWithPort("/temperature/fahreinheit/" + fahrenheitValue+"/celsius"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double expectedCelsiusValue = -14.69;
-		assertEquals(expectedCelsiusValue,convertToCelsiusEntity.getBody());
+		assertEquals(expectedCelsiusValue,convertToCelsiusEntity.getBody().get("celsius"));
 	}
 
 	@Test
 	public void givenMeterValueCheckIfItConvertsToCorrectYardValue(){
 		double meterValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToYardEntity = testRestTemplate.exchange(createURLWithPort("/distance/meter/" + meterValue+"/yard"),
+		ResponseEntity<Map>  convertToYardEntity = testRestTemplate.exchange(createURLWithPort("/distance/meter/" + meterValue+"/yard"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double expectedYardValue = 10.94;
-		assertEquals(expectedYardValue,convertToYardEntity.getBody());
+		assertEquals(expectedYardValue,convertToYardEntity.getBody().get( "yard" ));
 	}
 
 	@Test
 	public void givenYardValueCheckIfItConvertsToCorrectMeterValue(){
 		double yardValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToMeterEntity = testRestTemplate.exchange(createURLWithPort("/distance/yard/" + yardValue+"/meter"),
+		ResponseEntity<Map>  convertToMeterEntity = testRestTemplate.exchange(createURLWithPort("/distance/yard/" + yardValue+"/meter"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double expectedMeterValue = 9.14;
-		assertEquals(expectedMeterValue,convertToMeterEntity.getBody());
+		assertEquals(expectedMeterValue,convertToMeterEntity.getBody().get( "meter" ));
 	}
 
 	@Test
 	public void givenKilogramsValueCheckIfItConvertsToCorrectPoundValue(){
 		double kilogramValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToPoundEntity = testRestTemplate.exchange(createURLWithPort("/weight/kilogram/" + kilogramValue+"/pound"),
+		ResponseEntity<Map>  convertToPoundEntity = testRestTemplate.exchange(createURLWithPort("/weight/kilogram/" + kilogramValue+"/pound"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double expectedPoundValue = 22.05;
-		assertEquals(expectedPoundValue,convertToPoundEntity.getBody());
+		assertEquals(expectedPoundValue,convertToPoundEntity.getBody().get( "pound" ));
 	}
 
 	@Test
 	public void givenPoundValueCheckIfItConvertsToCorrectKilogramsValue(){
 		double poundValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToKilogramEntity = testRestTemplate.exchange(createURLWithPort("/weight/pound/" + poundValue+"/kilogram"),
+		ResponseEntity<Map>  convertToKilogramEntity = testRestTemplate.exchange(createURLWithPort("/weight/pound/" + poundValue+"/kilogram"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double expectedKilogramValue = 4.54;
-		assertEquals(expectedKilogramValue,convertToKilogramEntity.getBody());
+		assertEquals(expectedKilogramValue,convertToKilogramEntity.getBody().get( "kilogram" ));
 	}
 
 	@Test
 	public void givenLitreValueCheckIfItConvertsToCorrectPintValue(){
 		double litreValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToPintEntity = testRestTemplate.exchange(createURLWithPort("/volume/litre/" + litreValue+"/pint"),
+		ResponseEntity<Map> convertToPintEntity = testRestTemplate.exchange(createURLWithPort("/volume/litre/" + litreValue+"/pint"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double expectedPintValue = 17.6;
-		assertEquals(expectedPintValue,convertToPintEntity.getBody());
+		assertEquals(expectedPintValue,convertToPintEntity.getBody().get("pint"));
 	}
 
 	@Test
 	public void givenPintValueCheckIfItConvertsToCorrectLitreValue(){
 		double pintValue = 10.0;
 		HttpEntity<String> entity = new HttpEntity<>(null, httpHeaders);
-		ResponseEntity<Double> convertToLitreEntity = testRestTemplate.exchange(createURLWithPort("/volume/pint/" + pintValue+"/litre"),
+		ResponseEntity<Map> convertToLitreEntity = testRestTemplate.exchange(createURLWithPort("/volume/pint/" + pintValue+"/litre"),
 				HttpMethod.GET,
 				entity,
-				Double.class);
+				Map.class);
 		Double expectedLitreValue = 5.68;
-		assertEquals(expectedLitreValue,convertToLitreEntity.getBody());
+		assertEquals(expectedLitreValue,convertToLitreEntity.getBody().get( "litre" ));
 	}
 
 	private String createURLWithPort(String uri){
